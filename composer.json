@@ -1,0 +1,17 @@
+{
+    "name": "cwbertrand/cloned-portfolio",
+    "description": "portfolio",
+    "type": "projet",
+    "authors": [
+        {
+            "name": "Cwbertrand",
+            "email": "91189853+Cwbertrand@users.noreply.github.com"
+        }
+    ],
+    "require-dev": {
+        "fzaninotto/faker": "^1.9"
+    },
+    "require": {
+        "symfony/mailer": "^5.3"
+    }
+}
