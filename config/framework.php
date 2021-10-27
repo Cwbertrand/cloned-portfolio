@@ -38,6 +38,21 @@ function miniToken(string $token = 'token')
 }
 
 /**
+ * Retourne l'image du profil
+ * Si l'ulisateur est connecté
+ * sinon il retourne l'image par default.
+ */
+function picture_profil()
+{
+    $photo = '/img/no-profil.png';
+    if (isset($_SESSION['user']) && file_exists('img/'.sha1($_SESSION['user']['email']).'/'.$_SESSION['user']['photo'])) {
+        $photo = 'img/'.sha1($_SESSION['user']['email']).'/'.$_SESSION['user']['photo'];
+    }
+
+    return $photo;
+}
+
+/**
  * Function var_dump().
  *
  * Affiche les var_dump seulement si l'application
@@ -48,7 +63,7 @@ function miniToken(string $token = 'token')
  * APP_ENV = prod (environnement production)
  *
  * @param  $variable (varibale a tester, peu être de type bool,array,string,int,float...)
- * @param bool $type     (false pour le print_r, true pour le var_dump)
+ * @param bool $type (false pour le print_r, true pour le var_dump)
  */
 function dump($variable, bool $type = false)
 {

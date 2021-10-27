@@ -15,7 +15,7 @@ if ($mysqli->connect_error) {
  *
  * @return array
  */
-function query(string $sql): array
+function query(string $sql, bool $unique = false): array
 {
     global $mysqli;
 
@@ -30,5 +30,19 @@ function query(string $sql): array
         $result->close();
     }
 
-    return $results;
+    return $unique === true && !empty($results) ? $results[0] : $results;
+}
+
+
+if (!isset($_SESSION['user']) && isset($_COOKIE['remember'])) {
+    $sql = "SELECT * FROM users WHERE security='".$_COOKIE['remember']."'";
+
+    if ($result = $mysqli->query($sql)) {
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $_SESSION['user'] = $row;
+                redirectToRoute();
+            }
+        }
+    }
 }

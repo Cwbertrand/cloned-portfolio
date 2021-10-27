@@ -1,0 +1,5 @@
+<?php
+
+define('MAIL_HOST', 'gmail ou smtp');
+define('MAIL_USERNAME', 'votre adresse mail');
+define('MAIL_PASSWORD', 'votre mot de passe');
